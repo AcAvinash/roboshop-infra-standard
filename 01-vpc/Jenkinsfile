@@ -40,6 +40,17 @@ pipeline {
                 '''
             }
         }
+        stage('Destroy') { 
+            steps {
+             input "Shall i destroy?"
+             sh '''
+                cd 01-vpc
+                ls -ltr
+                pwd
+                 terraform destroy -auto-approve
+                '''
+            }
+        }
     }
 
     post {
